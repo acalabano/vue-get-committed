@@ -16,7 +16,7 @@ const db = firebase.initializeApp({
 }).database();
 
 export const reposRef = db.ref('repos');
-export const pixelsRef= db.ref('repos').child('pixels')
+export const pixelsRef= db.ref('repos').child('pixels');
 
 export const store = new Vuex.Store({
 

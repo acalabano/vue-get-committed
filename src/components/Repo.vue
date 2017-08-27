@@ -1,14 +1,11 @@
 <<template>
   <div>
-    <div v-for="pixel in pixels" :key="pixel.pixelDate">
-      {{pixel}}
-      <!-- <Pixels :pixel="pixel"><Pixels> -->
-    </div>
+    <Pixels> </Pixels>
   </div>
 </template>
 
 <<script>
-  import Pixels from './Pixels'
+  import Pixels from './Pixels.vue'
 
   export default {
     props:["repo"],
