@@ -1,41 +1,20 @@
-<template>
-    <div>
-        <input v-model.trim="repoName" @keyup.enter="addRepo"/>
-
-        <li v-for="repo in repos">
-            <h2> {{repo}} </h2>
-        </li>
+<<template>
+  <div>
+    <div v-for="pixel in pixels" :key="pixel.pixelDate">
+      {{pixel}}
+      <!-- <Pixels :pixel="pixel"><Pixels> -->
     </div>
+  </div>
 </template>
 
-<script>
-    import { reposRef } from '../store';
-    import Vuex from 'vuex';
+<<script>
+  import Pixels from './Pixels'
 
-    export default {
+  export default {
+    props:["repo"],
 
-        computed: Vuex.mapGetters([ 'repos' ]),
-
-        data () {
-            return {
-                repoName: ''
-            }
-        },
-
-        methods: {
-            addRepo() {
-                if( this.repoName.trim() ) {
-                    reposRef.push({
-                        repoName: this.repoName
-                    });
-                    this.repoName = ''
-                }
-            },
-        },
-
-        mounted () {
-          this.$store.dispatch('setReposRef', reposRef);
-        }
-
+    components: {
+      Pixels
     }
+  }
 </script>
