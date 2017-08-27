@@ -10,7 +10,7 @@
 
 <script>
     import { reposRef } from '../store';
-    import Repo from './Repo'
+    import Repo from './Repo.vue';
     import Vuex from 'vuex';
 
     export default {
