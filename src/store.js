@@ -16,7 +16,6 @@ const db = firebase.initializeApp({
 }).database();
 
 export const reposRef = db.ref('repos');
-export const pixelsRef= db.ref('repos').child('pixels');
 
 export const store = new Vuex.Store({
 
@@ -24,23 +23,17 @@ export const store = new Vuex.Store({
 
     state: {
         repos: [], // Will be bound as an array
-        pixels: [], //Will be bound also as an array
-        user: null // Will be bound as an object
     },
 
     mutations: firebaseMutations,
 
     getters: {
-        repos: state => state.repos,
-        pixels: state => state.pixels
+        repos: state => state.repos
     },
 
     actions: {
         setReposRef: firebaseAction( ( { bindFirebaseRef }, ref) => {
             bindFirebaseRef('repos', ref)
-        }),
-        setPixelsRef: firebaseAction( ( { bindFirebaseRef }, ref) => {
-            bindFirebaseRef('repos/pixels', ref)
         })
     }
 });
