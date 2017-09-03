@@ -49,7 +49,7 @@
         },
 
         mounted (){
-            this.$store.dispatch('setPixelsRef', pixelsRef)
+            this.$store.dispatch('setPixelsRef', pixelsRef);
         }
     }
 

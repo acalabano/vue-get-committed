@@ -2,23 +2,27 @@
     <div>
         <input v-model.trim="repoName" @keyup.enter="addRepo"/>
 
-        <li v-for="repo in repos" :key="repo.repoName">
-            <Repo :repo="repo"> </Repo>
-        </li>
+        <div v-for="repo in repos" :key="repo['.key']">
+            <Repo :repos="repos" :repo="repo"> </Repo>
+        </div>
     </div>
 </template>
 
 <script>
-    import { reposRef } from '../store';
+    import { reposRef } from '../../store';
     import Repo from './Repo.vue';
-    import Vuex from 'vuex';
+    import { mapGetters } from 'vuex';
 
     export default {
 
         components: {
             Repo
         },
-        computed: Vuex.mapGetters([ 'repos' ]),
+        computed: {
+            ...mapGetters([
+                'repos'
+            ])
+        },
 
         data () {
             return {
@@ -30,7 +34,10 @@
             addRepo() {
                 if( this.repoName.trim() ) {
                     reposRef.push({
-                        repoName: this.repoName
+                        repoName: this.repoName,
+                        pixels:{
+                            show: "false"
+                        }
                     });
                     this.repoName = ''
                 }

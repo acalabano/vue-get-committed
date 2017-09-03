@@ -1,11 +1,11 @@
 <template>
   <div id="app">
 
-    <Navbar></Navbar>
+    <Navbar />
 
-    <Homepage></Homepage>
+    <Sidebar />
 
-    <Repos></Repos>
+    <Homepage />
 
   </div>
 </template>
@@ -13,21 +13,15 @@
 <script>
 import Homepage from './components/Homepage.vue'
 import Navbar from './components/Navbar.vue'
-import Pixel from './components/Pixel.vue'
-import Pixels from './components/Pixels.vue'
-import Repos from './components/Repos.vue'
+import Sidebar from './components/Sidebar.vue'
 
 export default {
 
     components: {
         Homepage,
         Navbar,
-        Pixel,
-        Pixels,
-        Repos
-    },
-
-
+        Sidebar
+    }
 
 }
 </script>
