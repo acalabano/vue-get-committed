@@ -1,8 +1,12 @@
 <template>
     <div>
-        <input v-model.trim="repoTask" @keyup.enter="addTaskForRepo($route.params.id)"/>
+        <input v-model.trim="repoTask"
+               @keyup.enter="addTaskForRepo($route.params.id)"
+               placeholder="Daily Task"/>
 
         <Tasks :tasks="tasks" @reRenderMapper="mapperRepo"> </Tasks>
+
+        <Pixels> </Pixels>
     </div>
 </template>
 
@@ -10,11 +14,13 @@
 import { reposRef } from '../../store'
 import { mapGetters } from 'vuex'
 import Tasks from './Tasks.vue'
+import Pixels from '../pixel/Pixels.vue'
 
 export default {
 
     components: {
-        Tasks
+        Tasks,
+        Pixels
     },
 
     mounted(){
@@ -60,7 +66,6 @@ export default {
 
     methods: {
         addTaskForRepo: function (id) {
-            let repo = this.repo;
             if(this.repoTask.trim()){
                 reposRef.child(id).child('tasks').push({
                     taskName: this.repoTask,

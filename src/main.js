@@ -11,6 +11,7 @@ Vue.use(VueRouter, Vuex, VuexFire);
 
 const router = new VueRouter({
     routes,
+    // mode: 'abstract'
     mode: 'history'
 });
 
