@@ -7,7 +7,7 @@ import VuexFire from 'vuexfire'
 import { store } from './store'
 import { routes } from './routes'
 
-Vue.use(Vuex, VuexFire, VueRouter);
+Vue.use(VueRouter, Vuex, VuexFire);
 
 const router = new VueRouter({
     routes,

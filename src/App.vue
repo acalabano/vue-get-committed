@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view name="root_path"> </router-view>
+
+    <router-view> </router-view>
+
   </div>
 </template>
 

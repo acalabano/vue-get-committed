@@ -5,11 +5,6 @@ import Repos from './components/repo/Repos.vue';
 import Repo from './components/repo/Repo.vue';
 
 export const routes = [
-    { path: '/', name: 'root_path', component: Repos, children: [
-        { path: ':id', component: Repo, children: [
-            { path: '/pixels', component: Pixels, children: [
-                { path: ':id', component: Pixel }
-            ] }
-        ]}
-    ]}
+    { path: '/', component: Repos },
+    { path: ':id', name: 'repo', component: Repo },
 ];
