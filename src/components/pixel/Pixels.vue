@@ -1,17 +1,16 @@
 <template>
   <div>
-      <input v-model.trim="pixelDate" @keyup.enter="addPixel" />
-  </div>    
+
+  </div>
 </template>
 
 <script>
-    import { pixelsRef } from '../store';
+    import { reposRef } from '../../store'
     import { mapGetters } from 'vuex';
 
     export default {
 
         computed: {
-
             todayDate(){
                 let today = new Date();
                 let dd = today.getDate();
@@ -28,28 +27,18 @@
 
                 today = yyyy + '-' + mm + '-' + dd;
                 return today
-            }
+            },
+            ...mapGetters(['repos']),
         },
 
         data() {
             return {
-                pixelDate: this.todayDate
+                pixelDate: this.todayDate,
             }
         },
 
         methods: {
-            addPixel() {
-                if (this.pixelDate.trim()){
-                    pixelsRef.push({
-                        pixelDate: this.pixelDate
-                    });
-                    this.pixelDate=''
-                }
-            },
-        },
 
-        mounted (){
-            this.$store.dispatch('setPixelsRef', pixelsRef);
         }
     }
 

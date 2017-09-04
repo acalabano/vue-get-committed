@@ -1,7 +1,10 @@
 <template>
-    <button @click="showPixels(repos, repo)">
-      {{ repo.repoName }}
-    </button>
+    <div>
+        <button @click="showPixels(repos, repo)">
+          {{ repo.repoName }}
+        </button>
+    </div>
+
 </template>
 
 <script>
@@ -20,6 +23,6 @@
                 }
             })
         }
-    }
+    },
   }
 </script>

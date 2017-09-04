@@ -1,26 +1,17 @@
 <template>
   <div id="app">
-
     <Navbar />
-
-    <Sidebar />
-
-    <Homepage />
-
+    <router-view name="root_path"> </router-view>
   </div>
 </template>
 
 <script>
-import Homepage from './components/Homepage.vue'
 import Navbar from './components/Navbar.vue'
-import Sidebar from './components/Sidebar.vue'
 
 export default {
 
     components: {
-        Homepage,
-        Navbar,
-        Sidebar
+        Navbar
     }
 
 }
