@@ -2,21 +2,19 @@
     <div>
         <input v-model.trim="repoTask" @keyup.enter="addTaskForRepo($route.params.id)"/>
 
-        <div v-for="task in tasks" :key="tasks['.key']">
-            <Task :task="task"></Task>
-        </div>
+        <Tasks :tasks="tasks" @reRenderMapper="mapperRepo"> </Tasks>
     </div>
 </template>
 
 <script>
 import { reposRef } from '../../store'
 import { mapGetters } from 'vuex'
-import Task from './Task.vue'
+import Tasks from './Tasks.vue'
 
 export default {
 
     components: {
-        Task
+        Tasks
     },
 
     mounted(){

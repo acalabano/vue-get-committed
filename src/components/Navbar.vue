@@ -2,9 +2,9 @@
     <div>
         <nav class="navbar">
             <div class="navbar-brand">
-                <a class="navbar-item" href="http://bulma.io">
+                <router-link class="navbar-item" tag="a" to="/" >
                     <h1> Get-Commited! </h1>
-                </a>
+                </router-link>
 
                 <div class="navbar-burger">
                     <span></span>
