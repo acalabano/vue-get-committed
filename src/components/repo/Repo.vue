@@ -1,12 +1,22 @@
 <template>
-    <div>
-        <input v-model.trim="repoTask"
-               @keyup.enter="addTaskForRepo($route.params.id)"
-               placeholder="Daily Task"/>
+    <div class="container is-fluid">
+        <div class="columns">
+            <div class="column is-one-quarter">
+                <input v-model.trim="repoTask"
+                       @keyup.enter="addTaskForRepo($route.params.id)"
+                       placeholder="Daily Task"/>
 
-        <Tasks :tasks="tasks" @reRenderMapper="mapperRepo"> </Tasks>
+                <Tasks :tasks="tasks"
+                       @reRenderMapper="mapperRepo">
+                </Tasks>
 
-        <Pixels> </Pixels>
+            </div>
+            <div class="column">
+                <Pixels :pixels="pixels"
+                        @reRenderMapper="mapperRepo">
+                </Pixels>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,6 +25,7 @@ import { reposRef } from '../../store'
 import { mapGetters } from 'vuex'
 import Tasks from './Tasks.vue'
 import Pixels from '../pixel/Pixels.vue'
+import { EventBus } from '../../main'
 
 export default {
 
@@ -25,6 +36,7 @@ export default {
 
     mounted(){
         this.mapperRepo();
+        EventBus.$on('reRenderMapper', this.mapperRepo);
     },
 
     updated(){
@@ -34,7 +46,8 @@ export default {
     data(){
         return{
             repoTask: '',
-            repo: {}
+            repo: {},
+            pixelData: ''
         }
     },
 
@@ -43,6 +56,13 @@ export default {
 
         tasks: function(){
             return this.repo.tasks;
+        },
+
+        pixels: function () {
+            if( this.repo.pixels !== null ) {
+                return this.repo.pixels;
+            }
+            return this.pixels;
         },
 
         todayDate: function(){

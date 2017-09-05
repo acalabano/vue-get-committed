@@ -1,10 +1,8 @@
 <template>
     <div class="container is-fluid">
-
         <div class="input-form-container">
             <input v-model.trim="repoName" @keyup.enter="addRepo" class="input" type="text" placeholder="Create a Repository" />
         </div>
-
         <div v-for="repo in repos" :key="repo['.key']">
             <div class="field">
                 <div class="control">

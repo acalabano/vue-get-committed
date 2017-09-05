@@ -9,6 +9,6 @@ export const routes = [
     { path: '', name: 'root', component: Repos },
 
     { path: ':id', name: 'repo', component: Repo, children: [
-        { path: '/pixel/:id', name: 'pixel', component: Pixel }
+        { path: ':pixel', name: 'pixel', component: Pixel }
     ]},
 ];
