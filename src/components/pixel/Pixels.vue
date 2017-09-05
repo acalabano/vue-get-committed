@@ -1,57 +1,62 @@
 <template>
   <div>
-      <input v-model.trim="pixelDate" @keyup.enter="addPixel" />
-  </div>    
+    <div class="title"> Pixels </div>
+    <section>
+      <button @click="addPixel"> Add Pixel </button>
+      <div v-for="(pixel, key) in pixels" :key="pixels['.key']">
+        <div class="pixel-box">
+          <Pixel :pixel="pixel" :pixelKey="key"></Pixel>
+        </div>
+      </div>
+    </section>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-    import { pixelsRef } from '../store';
-    import { mapGetters } from 'vuex';
+import { reposRef } from '../../store'
+import Pixel from './Pixel.vue'
 
-    export default {
+export default {
 
-        computed: {
+    props: ['pixels'],
 
-            todayDate(){
-                let today = new Date();
-                let dd = today.getDate();
-                let mm = today.getMonth()+1;
-                const yyyy = today.getFullYear();
+    components: {
+        Pixel
+    },
 
-                if (dd<10) {
-                    dd = '0'+dd
-                }
+    computed: {
+        todayDate: function(){
+            let today = new Date();
+            let dd = today.getDate();
+            let mm = today.getMonth()+1;
+            const yyyy = today.getFullYear();
 
-                if (mm<10) {
-                    mm = '0'+mm
-                }
-
-                today = yyyy + '-' + mm + '-' + dd;
-                return today
+            if (dd<10) {
+                dd = '0'+dd
             }
-        },
 
-        data() {
-            return {
-                pixelDate: this.todayDate
+            if (mm<10) {
+                mm = '0'+mm
             }
-        },
 
-        methods: {
-            addPixel() {
-                if (this.pixelDate.trim()){
-                    pixelsRef.push({
-                        pixelDate: this.pixelDate
-                    });
-                    this.pixelDate=''
-                }
-            },
-        },
+            today = yyyy + '-' + mm + '-' + dd;
+            return today
+        }
+    },
 
-        mounted (){
-            this.$store.dispatch('setPixelsRef', pixelsRef);
+    methods: {
+        addPixel: function () {
+            let id = this.$route.fullPath;
+            reposRef.child(id).child('pixels').push({
+                pixelColor: 'rgb(235, 237, 240)',
+                pixelDate: this.todayDate,
+                show: false
+            });
+            this.$emit('reRenderMapper')
         }
     }
+}
 
 </script>
 

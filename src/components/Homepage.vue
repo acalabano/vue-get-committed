@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <h1> Home page! </h1>
+    <div class="column">
+        <h1> Hello World! </h1>
     </div>
 </template>
-
 <script>
     export default {
 
